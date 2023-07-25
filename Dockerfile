@@ -1,7 +1,8 @@
-ARG HUGO_VERSION=0.115.4
-ARG NODE_VERSION=18
+ARG GO_VERSION="1.20"
+FROM golang:${GO_VERSION}-bullseye
 
-FROM golang:1.20.6-bullseye
+ARG HUGO_VERSION="0.115.4"
+ARG NODE_VERSION="18"
 
 RUN apt update -y
 RUN apt install tar gzip build-essential -y
