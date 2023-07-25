@@ -68,8 +68,7 @@ jobs:
             NODE_VERSION=${{ matrix.node-version }}
             GO_VERSION=${{ matrix.go-version }}
           tags: |
-            "betterweb/hugo:${{ matrix.hugo-version }}-${{ matrix.node-vesion }}-${{ matrix.go-vesion }}"
-            "betterweb/hugo:${{ matrix.hugo-version }}-${{ matrix.node-vesion }}-${{ matrix.go-vesion }}-extended"
+            "betterweb/hugo:extended-${{ matrix.hugo-version }}-${{ matrix.node-vesion }}-${{ matrix.go-vesion }}"
 
   build-latest:
     runs-on: ubuntu-latest
@@ -107,4 +106,4 @@ jobs:
             GO_VERSION=1.20
           tags: |
             betterweb/hugo:latest
-            betterweb/hugo:latest-extended
+            betterweb/hugo:extended-latest
