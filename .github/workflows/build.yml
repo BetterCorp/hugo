@@ -33,13 +33,12 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: Build
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v4
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: ./
           file: ./Dockerfile
           platforms: linux/amd64 # ,linux/arm64/v8
           push: true
-          build-args:
-            HUGO_VERSION=${{ matrix.hugo-version }}
+          build-args: HUGO_VERSION=${{ matrix.hugo-version }}
           tags: betterweb/hugo:${{ matrix.hugo-version }}-extended
