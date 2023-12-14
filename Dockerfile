@@ -1,12 +1,15 @@
-ARG GO_VERSION="1.20"
+ARG GO_VERSION="1.21"
 FROM golang:${GO_VERSION}-bullseye
 
-ARG HUGO_VERSION="0.115.4"
+ARG HUGO_VERSION="0.121.1"
 ARG NODE_VERSION="18"
 
 RUN apt update -y
-RUN apt install tar gzip build-essential -y
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && apt-get install -y nodejs
+RUN apt install tar gzip build-essential ca-certificates curl gnupg -y
+RUN mkdir -p /etc/apt/keyrings
+RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+RUN echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_VERSION.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+RUN apt update -y && apt-get install -y nodejs
 RUN npm i -g yarn pnpm
 RUN mkdir /tmp/temph
 RUN mkdir /home/app
